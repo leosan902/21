@@ -120,5 +120,4 @@ while True:
             sys.exit(0)
         else:
             s.send(b'Continua')
-input('Press Enter to exit') 
-bmap[cardsValor[0]] + bmap[cardsValor[1]]+ bmap[cardsValor[2]]==21
+

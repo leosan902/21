@@ -23,8 +23,9 @@ PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 
 s =socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 s.bind((HOST, PORT))
-s.listen(5)
-for i in range(2):
+s.listen(0)
+jogadores= input('Quantos jogadores\n') 
+for i in range(int(jogadores)):
     conn, addr = s.accept()
     clientes.append(conn)
     cards.clear()
