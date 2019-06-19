@@ -1,4 +1,5 @@
 import random
+import sys
 import socket
 import time
 deck=[]
@@ -14,27 +15,7 @@ random.shuffle(deck)
 cards=[]
 pilha=[]
 cardsValor=[]
-bmap = { 
-         'K' : 10,
-         'Q' : 10,
-         "J" : 10,
-         '10': 10,
-         '9' : 9,
-         '8' : 8,
-         '7' : 7,
-         '6' : 6,
-         '5' : 5,
-         '4' : 4, 
-         '3' : 3, 
-         '2' : 2,
-         'A' : 1
-       }
-#end = cards[0].find(' ') 
-#cardsValor.append(cards[0][:end])
-#end = cards[1].find(' ') 
-#cardsValor.append(cards[1][:end])
-#end = cards[2].find(' ') 
-#cardsValor.append(cards[2][:end]) 
+
 clientes=[]
 
 HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
@@ -43,7 +24,7 @@ PORT = 65432        # Port to listen on (non-privileged ports are > 1023)
 s =socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 s.bind((HOST, PORT))
 s.listen(5)
-for i in range(1):
+for i in range(2):
     conn, addr = s.accept()
     clientes.append(conn)
     cards.clear()
@@ -55,7 +36,7 @@ for i in range(1):
          conn.send(i.encode('utf-8'))
          time.sleep(0.2)
 cards.clear()
-#random.shuffle(clientes)
+random.shuffle(clientes)
 while True:
     for x in clientes:
         x.send(b'Sua vez')
@@ -190,8 +171,17 @@ while True:
             cards.clear()   
             break
           
-       
-       
+        resutado = x.recv(100)
+        if(resutado==b'Venci'):
+            for x in clientes:
+                try:
+                    x.send(b'Voce Perdeu')
+                    x.close()
+
+                except:
+                    pass
+            time.sleep(5)
+            sys.exit(0)
        
 
            

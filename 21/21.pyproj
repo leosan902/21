@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>68359e59-0e2a-4ff5-96bc-228a19506f35</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>21_Server.py</StartupFile>
+    <StartupFile>Client.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
